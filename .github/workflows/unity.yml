@@ -1,8 +1,8 @@
 name: Unity CI
 
 on:
-  push: { branches: [release] }
-  pull_request: { branches: [release] }
+  push: { branches: [develop] }
+  pull_request: { branches: [develop] }
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
