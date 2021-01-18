@@ -9,7 +9,7 @@ env:
 
 jobs:
   build:
-    name: Crack The music
+    name: GlobalGameJam-2021
     runs-on: ubuntu-latest
     steps:
       # Checkout
