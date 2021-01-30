@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &122878478 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8363567968675274548, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+  m_PrefabInstance: {fileID: 8363567968456326911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &124926394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8363567968675274550, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+  m_PrefabInstance: {fileID: 8363567968456326911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &124926398 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 8363567968669543158, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+  m_PrefabInstance: {fileID: 8363567968456326911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &124926400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124926394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: df23474d8a3a9634d84801470b0cfccc, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &628737635
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +696,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8363567968664546006, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 124926394}
+    - target: {fileID: 8363567968664546006, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+      propertyPath: myPlayer
+      value: 
+      objectReference: {fileID: 122878478}
+    - target: {fileID: 8363567968664546006, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 2713295972328009825, guid: 26b202e0077620347af0f7141e971e0c, type: 3}
+    - target: {fileID: 8363567968664546006, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+      propertyPath: characterController
+      value: 
+      objectReference: {fileID: 124926398}
     - target: {fileID: 8363567968675274550, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
       propertyPath: m_Name
       value: FPSController

@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
+using System.Collections;
 
 #pragma warning disable 618, 649
 namespace UnityStandardAssets.Characters.FirstPerson
@@ -43,6 +46,51 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+
+        private Default_Input_Actions Controls;
+
+        [Header("Shoot")]
+        [SerializeField] private bool hasBall = true;
+        [SerializeField] private GameObject TeleBallPfb;
+        private GameObject TeleBall;
+        [SerializeField] private float forceBuildup = 5f;
+        [SerializeField] private float defaultForce = 2f;
+        [SerializeField] private GameObject myPlayer;
+        [SerializeField] private CharacterController characterController;
+
+        private void Awake()
+        {
+            Controls = new Default_Input_Actions();
+            Controls.Player.Teleport.performed += ctx =>
+            {
+                if (hasBall == false)
+                {
+                    Teleport();
+                }
+
+            };
+
+            Controls.Player.Shoot.performed +=
+                ctx =>
+                {
+                    if (ctx.interaction is SlowTapInteraction && hasBall)
+                    {
+                        StartCoroutine(ForceFire((float)(ctx.duration * forceBuildup)));
+                        //Debug.Log("Fast");
+                        hasBall = false;  //// Keep in
+                    }
+                    else if (hasBall)
+                    {
+                        Shoot(defaultForce);
+                        Debug.Log("Normal");
+                    }
+                    hasBall = false;      //// Keep in
+                };
+        }
+
+        void OnEnable() => Controls.Enable();
+
+        void OnDisable() => Controls.Disable();
         // Use this for initialization
         private void Start()
         {
@@ -240,6 +288,39 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
 
+        private IEnumerator ForceFire(float forceAmount)
+        {
+
+            Shoot(forceAmount);
+            yield return new WaitForSeconds(0.1f);
+
+        }
+
+        private void Shoot(float force)
+        {
+            var transform = this.transform;     // get player position
+            TeleBall = (GameObject)Instantiate(TeleBallPfb);    // Instantiate TeleBallPfb
+            TeleBall.name = "TeleBall";
+            TeleBall.transform.position = transform.position + transform.forward * 0.6f;   // TBD Add force
+            TeleBall.transform.rotation = transform.rotation;
+
+            var size = 1;   // Set size of TeleBallPfb progmatically
+            TeleBall.transform.localScale *= size;
+
+            TeleBall.GetComponent<Rigidbody>().mass = Mathf.Pow(size, 3);
+            TeleBall.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
+            TeleBall.GetComponent<MeshRenderer>().material.color =
+                new Color(Random.value, Random.value, Random.value, 1.0f);
+        }
+
+        private void Teleport()
+        {
+            characterController.enabled = false;
+            characterController.transform.position = new Vector3(TeleBall.transform.position.x, TeleBall.transform.position.y + 1.5f, TeleBall.transform.position.z);
+            characterController.enabled = true;
+
+            Debug.Log("Teleport");
+        }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
@@ -255,6 +336,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+
+            if (hit.gameObject.name == "TeleBall")
+            {
+                Debug.Log(hit.gameObject.name);
+                Destroy(hit.gameObject);
+                hasBall = true;
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8363567968675922230}
   - component: {fileID: 8363567968663523184}
   - component: {fileID: 2659684907983701026}
+  - component: {fileID: 4734807916082431823}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -125,6 +126,20 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!136 &4734807916082431823
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363567968675274548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8363567968675274550
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +190,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.8
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8363567968664546006
@@ -302,6 +317,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  hasBall: 1
+  TeleBallPfb: {fileID: 2713295972328009825, guid: 26b202e0077620347af0f7141e971e0c, type: 3}
+  forceBuildup: 5
+  defaultForce: 2
+  myPlayer: {fileID: 8363567968675274550}
+  characterController: {fileID: 8363567968669543158}
 --- !u!54 &8363567968678476886
 Rigidbody:
   m_ObjectHideFlags: 0
