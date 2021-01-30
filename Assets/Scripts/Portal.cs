@@ -20,13 +20,13 @@ public class Portal : MonoBehaviour
     public void LoadScene()
     {
         if (!scene.isLoaded && entered)
-            SceneManager.LoadSceneAsync(scene.buildIndex, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
 
     public void UnloadScene()
     {
         if (scene.isLoaded)
-            SceneManager.UnloadSceneAsync(scene.buildIndex);
+            SceneManager.UnloadSceneAsync(sceneName);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +34,7 @@ public class Portal : MonoBehaviour
         if(other.gameObject.layer == playerLayer.ToInteger())
         {
             onEnterPortal?.Invoke();
-            SceneManager.LoadSceneAsync(scene.buildIndex, LoadSceneMode.Single);
+            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         }
     }
 }

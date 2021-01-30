@@ -298,6 +298,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577124506}
     m_Modifications:
+    - target: {fileID: 2194728125689330479, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8363567968664546006, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
       propertyPath: onLeftMouseDown.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -351,12 +355,20 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8363567968675274548, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363567968675274548, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8363567968675274550, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
       propertyPath: m_Name
       value: FPSController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363567968675274550, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8363567968675274550, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
       propertyPath: m_IsActive
@@ -7948,7 +7960,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1851438664}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -8017,11 +8029,11 @@ MonoBehaviour:
   onEnterPortal:
     m_PersistentCalls:
       m_Calls: []
-  sceneName: 
+  sceneName: JohnScene
   loadSceneDistance: 0
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1001 &1859952998
 PrefabInstance:
   m_ObjectHideFlags: 0
