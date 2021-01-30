@@ -40,7 +40,7 @@ public class MaterialEditor : MonoBehaviour
 
     }
 
-    public void ChangeColour()
+    private void ChangeColour()
     {
         index = (index + 1 < LightColours.Count) ? index + 1 : 0;
         if (CanDebug) Debug.Log($"{LightColours[index].color}");

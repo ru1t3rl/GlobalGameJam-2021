@@ -11,7 +11,7 @@ public class VictoryLampScript: MonoBehaviour
     List<Material> LightColours;
 
     [SerializeField]
-    AudioSource OpenSound;
+    AudioSource VictorySound;
     
     MeshRenderer renderer;
     MaterialPropertyBlock mpb;
@@ -39,33 +39,20 @@ public class VictoryLampScript: MonoBehaviour
 
     private void Update()
     {
-        //If the lamps match the order, initiate TurnOn()
+        
     }
 
     public void TurnOn()
     {
-        //Change material to On
+        mpb.SetColor("_EmissionColor", LightColours[1].GetColor("_EmissionColor") * 1.5f);
+        renderer.SetPropertyBlock(mpb);
+
+        VictorySound.Play();
     }
 
-    //public void ChangeColour()
-    //{
-    //    index = (index + 1 < LightColours.Count) ? index + 1 : 0;
-    //    if (CanDebug) Debug.Log($"{LightColours[index].color}");
-    //    mpb.SetColor("_EmissionColor", LightColours[index].GetColor("_EmissionColor") * 1.5f);
-    //    renderer.SetPropertyBlock(mpb);
-
-    //    onChangeColor?.Invoke(LightColours[index].color);
-
-    //    hitSound.Play();
-    //    hitSound.pitch = index + 2;
-    //    if (CanDebug) Debug.Log(hitSound.pitch);
-    //}
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Laser")
-    //    {            
-    //        ChangeColour();
-    //    }
-    //}
+    public void TurnOff()
+    {
+        mpb.SetColor("_EmissionColor", LightColours[0].GetColor("_EmissionColor") * 1.5f);
+        renderer.SetPropertyBlock(mpb);
+    }
 }
