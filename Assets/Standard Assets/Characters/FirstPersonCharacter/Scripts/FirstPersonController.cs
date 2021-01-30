@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
@@ -43,6 +44,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public UnityEvent onLeftMouseDown;
+
         // Use this for initialization
         private void Start()
         {
@@ -81,6 +84,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
                 m_MoveDir.y = 0f;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                onLeftMouseDown?.Invoke();
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
