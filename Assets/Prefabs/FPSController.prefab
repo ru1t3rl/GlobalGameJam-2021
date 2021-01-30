@@ -43,7 +43,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.08430195, y: 0.05282098, z: 0.074995995}
+  m_Size: {x: 1, y: 0.05282098, z: 1}
   m_Center: {x: 0, y: -0.9, z: 0}
 --- !u!54 &9128913150214395001
 Rigidbody:
@@ -365,6 +365,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  m_MoveDir: {x: 0, y: 0, z: 0}
+  m_Jumping: 0
+  onLeftMouseDown:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &8363567968678476886
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -490,3 +495,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 2
+  rayDistance: 0
+  jumpDrag: 2
+  layersToCheck:
+    serializedVersion: 2
+    m_Bits: 0
