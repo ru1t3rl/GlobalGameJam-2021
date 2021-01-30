@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class SpeedPad : Powerup
 {
-    Vector3 directionToLaunch;
+    protected Vector3 directionToLaunch;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Player>())
         {
             
-            //SetPlayerSpeed?.Invoke(DirectionToLaunch());
+            SetPlayerSpeed?.Invoke(DirectionToLaunch());
         }
     }
 

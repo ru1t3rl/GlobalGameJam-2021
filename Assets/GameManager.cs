@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //Debug.Log(player.transform.position.y + "Player Y POS");
-        //if (player.transform.position.y < -5)
-        //{
-        //    //Reset();
-        //}
+        if (player.transform.position.y < -5)
+        {
+            Reset();
+        }
     }
 }

@@ -5,10 +5,6 @@ using UnityEngine;
 public class LaunchPad : SpeedPad
 {
     public Transform childTransform;
+    public float bounceHeight;
 
-    protected override Vector3 DirectionToLaunch()
-    {
-        Debug.Log("Hitting Player");
-        return transform.up * 1;
-    }
 }

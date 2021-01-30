@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     {
         if (hit.gameObject.GetComponent<LaunchPad>())
         {            
-            LaunchPlayer(hit.collider.transform.GetComponent<LaunchPad>().childTransform.up, jumpForce, 1f);
+            LaunchPlayer(hit.collider.transform.GetComponent<LaunchPad>().childTransform.up * hit.collider.transform.GetComponent<LaunchPad>().bounceHeight, jumpForce, 1f);
             isLaunched = true;
         }
     }
