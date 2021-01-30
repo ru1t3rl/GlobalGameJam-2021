@@ -10,13 +10,16 @@ public class SpeedPad : Powerup
     {
         if (collision.gameObject.GetComponent<Player>())
         {
-            Debug.Log("Hitting Player");
-            SetPlayerSpeed?.Invoke(DirectionToLaunch());
+            
+            //SetPlayerSpeed?.Invoke(DirectionToLaunch());
         }
     }
+
 
     protected virtual Vector3 DirectionToLaunch()
     {
         return directionToLaunch;
     }
+
+    
 }

@@ -5,7 +5,5 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
-
-
     public Action<Vector3> SetPlayerSpeed;
 }
