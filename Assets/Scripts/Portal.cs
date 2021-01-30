@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] UnityEvent onEnterPortal;
+    [SerializeField] UnityEvent onEnterPortal, onGetCloseToPortal;
 
     [SerializeField] string sceneName;
     Scene scene;
