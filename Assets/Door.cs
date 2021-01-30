@@ -7,7 +7,8 @@ public class Door : MonoBehaviour
 {
     [SerializeField] GameObject[] door = new GameObject[2];
     [SerializeField] float moveDistance;
-    [SerializeField] float moveDuration;
+    [SerializeField] AudioSource source;
+
     Vector3[] startPos;
     bool open = false;
 
@@ -26,10 +27,14 @@ public class Door : MonoBehaviour
     /// </summary>
     public void Open()
     {
-        door[0].transform.DOLocalMoveX(startPos[0].x + moveDistance, moveDuration);
+        if (source.isPlaying)
+            source.Stop();
+        source.Play();
+
+        door[0].transform.DOLocalMoveX(startPos[0].x + moveDistance, source.clip.length);
 
         if (door.Length >= 2)
-            door[1].transform.DOLocalMoveX(startPos[1].x - moveDistance, moveDuration);
+            door[1].transform.DOLocalMoveX(startPos[1].x - moveDistance, source.clip.length);
 
         open = true;
     }
@@ -39,10 +44,14 @@ public class Door : MonoBehaviour
     /// </summary>
     public void Close()
     {
-        door[0].transform.DOLocalMoveX(startPos[0].x, moveDuration);
+        if (source.isPlaying)
+            source.Stop();
+        source.Play();
+
+        door[0].transform.DOLocalMoveX(startPos[0].x, source.clip.length);
 
         if (door.Length >= 2)
-            door[1].transform.DOLocalMoveX(startPos[1].x, moveDuration);
+            door[1].transform.DOLocalMoveX(startPos[1].x, source.clip.length);
 
         open = false;
     }
