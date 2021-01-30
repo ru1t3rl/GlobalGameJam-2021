@@ -6,7 +6,7 @@ public static class ExtensionMethods
 {
     /// <summary> Converts given bitmask to layer number </summary>
     /// <returns> layer number/index </returns>
-    public static int ToLayer(this LayerMask bitmask)
+    public static int ToInteger(this LayerMask bitmask)
     {
         bitmask = bitmask.value;
         int result = bitmask > 0 ? 0 : 31;

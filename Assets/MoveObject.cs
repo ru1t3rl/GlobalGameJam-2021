@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class MoveObject : MonoBehaviour
         {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
             {
-                if (hit.transform != null && hit.transform.gameObject.layer == moveAbleLayer.ToLayer())
+                if (hit.transform != null && hit.transform.gameObject.layer == moveAbleLayer.ToInteger())
                 {
                     hit.transform.DOMove(new Vector3(transform.position.x,
                                                      transform.position.y,
@@ -27,5 +28,16 @@ public class MoveObject : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void RemoveFromPlayer(GameObject Player)
+    {
+        Destroy(this);
+    }
+
+    public void AddToPlayer(GameObject player)
+    {
+        player.AddComponent<MoveObject>();
+
     }
 }

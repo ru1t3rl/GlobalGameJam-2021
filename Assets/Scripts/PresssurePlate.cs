@@ -11,13 +11,13 @@ public class PresssurePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != layerToIgnore)
+        if (other.gameObject.layer != layerToIgnore.ToInteger())
             onEnterPlate?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer != layerToIgnore)
+        if (other.gameObject.layer != layerToIgnore.ToInteger())
             onPlateExit?.Invoke();
     }
 }
