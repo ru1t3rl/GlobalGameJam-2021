@@ -6,7 +6,17 @@ using UnityEngine.Events;
 public class LightBulbManager : MonoBehaviour
 {
     [SerializeField]
+    bool CanDebug = false;
+
+    [SerializeField]
     List<MaterialEditor> lightBulbs;
+
+    [SerializeField]
+    List<Material> resultColours;
+
+    [SerializeField]
+    List<MeshRenderer> resultLamps;
+
     MeshRenderer renderer;
     MaterialPropertyBlock mpb;
     List<Color> activeColours = new List<Color>();
@@ -14,12 +24,12 @@ public class LightBulbManager : MonoBehaviour
 
     [SerializeField] UnityEvent VictoryEvent, NoVictoryEvent;
 
+    private int GoodMatches;
+
     // Start is called before the first frame update
     void Start()
     {
         activeColours = new List<Color>();
-
-        renderer = GetComponent<MeshRenderer>();
 
         for (int i = 0; i < lightBulbs.Count; i++)
         {
@@ -50,17 +60,19 @@ public class LightBulbManager : MonoBehaviour
         int matchingLights = 0;
         for (int iColor = 0; iColor < colorOrder.Count; iColor++)
         {
-            Debug.Log("CURRENT COLOUR:  " + lightBulbs[iColor].Mpb.GetColor("_EmissionColor"));
-            Debug.Log("WANTED COLOUR:   " + colorOrder[iColor].GetColor("_EmissionColor"));
+            if (CanDebug) Debug.Log("CURRENT COLOUR:  " + lightBulbs[iColor].Mpb.GetColor("_EmissionColor"));
+            if (CanDebug) Debug.Log("WANTED COLOUR:   " + colorOrder[iColor].GetColor("_EmissionColor"));
 
             if(lightBulbs[iColor].Mpb.GetColor("_EmissionColor") == colorOrder[iColor].GetColor("_EmissionColor") * 1.5f)
-            {
-                Debug.Log("Match!");
+            {                
                 matchingLights++;
+
             }
         }
 
-        Debug.Log("Matching Lights: " + matchingLights);
+        ResultLampCounter(matchingLights);
+
+        Debug.Log("Matching Lights:   " + matchingLights);
 
         return matchingLights >= colorOrder.Count;
     }
@@ -74,6 +86,18 @@ public class LightBulbManager : MonoBehaviour
         if (DoColoursMatch() == false)
         {
             NoVictoryEvent?.Invoke();
+        }
+    }
+
+    private void ResultLampCounter(int burningLights)
+    {
+        mpb = new MaterialPropertyBlock();
+        for (int iMatch = 0; iMatch < resultLamps.Count; iMatch++)
+        {
+            renderer = resultLamps[iMatch];
+            renderer.GetPropertyBlock(mpb);
+            mpb.SetColor("_EmissionColor", (iMatch < burningLights)? resultColours[1].GetColor("_EmissionColor") * 1.5f : resultColours[0].GetColor("_EmissionColor") * 1.5f);
+            renderer.SetPropertyBlock(mpb);
         }
     }
 }

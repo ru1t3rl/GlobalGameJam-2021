@@ -17,8 +17,6 @@ public class VictoryLampScript: MonoBehaviour
     MaterialPropertyBlock mpb;
     public MaterialPropertyBlock Mpb => mpb;
 
-    int index = 0;
-
     public System.Action<Color> onChangeColor;
 
     // Start is called before the first frame update
@@ -30,9 +28,7 @@ public class VictoryLampScript: MonoBehaviour
         renderer.GetPropertyBlock(mpb);
 
         //mpb.SetColor("_EmissionColor", Color.cyan);
-
-        renderer.SetPropertyBlock(mpb);
-              
+                     
         if (CanDebug) Debug.Log(LightColours);
 
     }

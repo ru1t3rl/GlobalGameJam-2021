@@ -30,10 +30,6 @@ public class MaterialEditor : MonoBehaviour
         mpb = new MaterialPropertyBlock();
         renderer.GetPropertyBlock(mpb);
 
-        //mpb.SetColor("_EmissionColor", Color.cyan);
-
-        renderer.SetPropertyBlock(mpb);
-
         hitSound.pitch = startingPitch;
 
         if (CanDebug) Debug.Log(LightColours);

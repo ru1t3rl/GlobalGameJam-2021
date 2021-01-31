@@ -160,7 +160,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2316ab00a82f8d44bb1852cc6b2f565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanDebug: 0
   mEditor: {fileID: 2058014729026699032}
 --- !u!1 &2058014729706382527
 GameObject:
@@ -524,6 +525,7 @@ GameObject:
   - component: {fileID: 8371896751280463372}
   - component: {fileID: 8350403125005915755}
   - component: {fileID: 2058014729026699032}
+  - component: {fileID: 6698810048530506527}
   m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
@@ -539,7 +541,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6568936520271435675}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0.027, z: 0}
+  m_LocalPosition: {x: 0, y: 0.039999895, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 2058014729474206166}
@@ -607,6 +609,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17a6d65b5b9ac3e46885a3d8306b8c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanDebug: 0
   LightColours: []
   hitSound: {fileID: 2058014729706382529}
   startingPitch: 1
+--- !u!135 &6698810048530506527
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6568936520271435675}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.00754908
+  m_Center: {x: 0, y: 0, z: 0.002}
