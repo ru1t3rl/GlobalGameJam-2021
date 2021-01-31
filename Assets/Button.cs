@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Button : MonoBehaviour
 {
+    [SerializeField]UnityEvent unlockDoor;
     bool isActivated;
     [SerializeField] PlayerInfo pi;
     [SerializeField] GameObject reward;
@@ -27,15 +29,16 @@ public class Button : MonoBehaviour
         RayCastPlayerHit();
     }
 
-    private void RayCastPlayerHit()
+    public void RayCastPlayerHit()
     {
         RaycastHit hit;
-        Debug.DrawRay(transform.position, -transform.forward * rayDistance);
-        if (Physics.Raycast(transform.position, -transform.forward, out hit, rayDistance))
+        Debug.DrawRay(transform.position, (Camera.main.transform.position- transform.position ) * rayDistance);
+        if (Physics.Raycast(transform.position, (Camera.main.transform.position -transform.position ), out hit, rayDistance))
         {
             if (hit.transform.gameObject != null && hit.transform.gameObject.GetComponent<Player>())
             {
                 isActivated = true;
+                unlockDoor?.Invoke();
                 Debug.Log(isActivated);
             }
         }
@@ -46,8 +49,16 @@ public class Button : MonoBehaviour
         if (pi.availableRewards.Count > 0)
         {
             reward = Instantiate(pi.availableRewards[Random.Range(0, pi.availableRewards.Count)]);
-            reward.transform.GetChild(0).GetComponent<Reward>().SetPosition(portal);
+            SetPosition(portal);
             reward.SetActive(false);
         }
     }
+
+    public void SetPosition(GameObject portal)
+    {
+        reward.transform.position = portal.transform.position + portal.transform.forward * 3;
+        reward.transform.position = new Vector3(reward.transform.position.x, reward.transform.position.y, reward.transform.position.z);
+        
+    }
+
 }
