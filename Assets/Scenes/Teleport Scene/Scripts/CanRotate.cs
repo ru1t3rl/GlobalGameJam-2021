@@ -10,11 +10,11 @@ public class CanRotate : MonoBehaviour
 
     void Update()
     {
-        if (canRotate && switchRotate)
+        if (switchRotate)
         {
             this.transform.Rotate(Vector3.up, rotationSpeed);
         }
-        else if (canRotate && !switchRotate)
+        else if (!switchRotate)
         {
             this.transform.Rotate(Vector3.up, -rotationSpeed);
         }
