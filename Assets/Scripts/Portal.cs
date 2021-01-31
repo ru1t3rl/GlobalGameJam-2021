@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.QuickSearch.Providers;
@@ -15,6 +16,7 @@ public class Portal : MonoBehaviour
     Scene scene;
     [SerializeField] float loadSceneDistance;
     [SerializeField] LayerMask playerLayer;
+    [SerializeField] bool unloadAfterLoadAdditive = false;
     bool loaded, entered = false;
 
     public void LoadScene()
@@ -34,7 +36,15 @@ public class Portal : MonoBehaviour
         if(other.gameObject.layer == playerLayer.ToInteger())
         {
             onEnterPortal?.Invoke();
+            
+            if(loadSceneMode == LoadSceneMode.Additive && unloadAfterLoadAdditive)
+            {
+                SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
+            }
+
             SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
+            
+                  
         }
     }
 }
