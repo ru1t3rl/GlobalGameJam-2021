@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.VFX;
 
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] UnityEngine.CharacterController controller;
-
+    
     [Header("Movement")]
     [SerializeField] float acceleration;
     [SerializeField] float drag = 1;
@@ -24,9 +25,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float gravity = 9.81f;
     [SerializeField] float distanceToFloor = 0.2f;
     bool onGround = false;
-
-
-
     private void Update()
     {
         velocity.x /= drag;

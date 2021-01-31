@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 8363567968664546006}
   - component: {fileID: 8363567968678476886}
   - component: {fileID: 8363567968676021974}
+  - component: {fileID: 5196709476102900114}
   - component: {fileID: 748828450537426496}
   m_Layer: 0
   m_Name: FPSController
@@ -237,8 +238,8 @@ CharacterController:
   m_Height: 1.8
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_StepOffset: 0.1
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8363567968664546006
@@ -365,6 +366,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
   m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
   m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  hasBall: 1
+  TeleBallPfb: {fileID: 2713295972328009825, guid: 26b202e0077620347af0f7141e971e0c, type: 3}
+  forceBuildup: 6
+  defaultForce: 4
+  myPlayer: {fileID: 8363567968675274550}
+  characterController: {fileID: 8363567968669543158}
+  col: {fileID: 5196709476102900114}
   m_MoveDir: {x: 0, y: 0, z: 0}
   m_Jumping: 0
   onLeftMouseDown:
@@ -482,6 +490,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!65 &5196709476102900114
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363567968675274550}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1110878, y: 0.7454065, z: 1.087384}
+  m_Center: {x: -0.0032963753, y: -0.6303001, z: 0.00000011920929}
 --- !u!114 &748828450537426496
 MonoBehaviour:
   m_ObjectHideFlags: 0

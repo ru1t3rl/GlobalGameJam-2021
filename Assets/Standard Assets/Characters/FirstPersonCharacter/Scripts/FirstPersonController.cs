@@ -4,6 +4,9 @@ using UnityEngine.Events;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
+using System.Collections;
 
 #pragma warning disable 618, 649
 namespace UnityStandardAssets.Characters.FirstPerson
@@ -44,6 +47,67 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public bool m_Jumping;
         private AudioSource m_AudioSource;
 
+
+        private Default_Input_Actions Controls;
+
+        [Header("Shoot")]
+        [SerializeField] private bool hasBall = false;
+        [SerializeField] private GameObject TeleBallPfb;
+        private GameObject TeleBall;
+        [SerializeField] private float forceBuildup = 6f;
+        [SerializeField] private float defaultForce = 4f;
+        [SerializeField] private GameObject myPlayer;
+        [SerializeField] private Collider col;
+        [SerializeField] private bool ballSpawned = false;
+
+        // Use this for initialization
+        private void Awake()
+        {
+            m_CharacterController = GetComponent<CharacterController>();
+            m_Camera = Camera.main;
+            m_OriginalCameraPosition = m_Camera.transform.localPosition;
+            m_FovKick.Setup(m_Camera);
+            m_HeadBob.Setup(m_Camera, m_StepInterval);
+            m_StepCycle = 0f;
+            m_NextStep = m_StepCycle/2f;
+            m_Jumping = false;
+            m_AudioSource = GetComponent<AudioSource>();
+			m_MouseLook.Init(transform , m_Camera.transform);
+
+            m_CharacterController.detectCollisions = true;
+
+            hasBall = false;
+            Controls = new Default_Input_Actions();
+            Controls.Player.Teleport.performed += ctx =>
+            {
+                if (hasBall == false && ballSpawned)
+                {
+                    Teleport();
+                }
+
+            };
+
+            Controls.Player.Shoot.performed +=
+                ctx =>
+                {
+                    if (ctx.interaction is SlowTapInteraction && hasBall)
+                    {
+                        StartCoroutine(ForceFire((float)(ctx.duration * forceBuildup)));
+                        //Debug.Log("Fast");
+                        hasBall = false;  //// Keep in
+                    }
+                    else if (hasBall)
+                    {
+                        Shoot(defaultForce);
+                        Debug.Log("Normal");
+                    }
+                    hasBall = false;      //// Keep in
+                };
+        }
+
+        void OnEnable() => Controls.Enable();
+        void OnDisable() => Controls.Disable();
+
         public UnityEvent onLeftMouseDown;
 
         // Use this for initialization
@@ -62,7 +126,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_CharacterController.detectCollisions = true;
         }
-
 
         // Update is called once per frame
         private void Update()
@@ -250,6 +313,74 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
 
+        private IEnumerator ForceFire(float forceAmount)
+        {
+
+            Shoot(forceAmount);
+            yield return new WaitForSeconds(0.1f);
+
+        }
+
+        private void Shoot(float force)
+        {
+            var transform = this.transform;     // get player position
+            TeleBall = (GameObject)Instantiate(TeleBallPfb);    // Instantiate TeleBallPfb
+            TeleBall.name = "TeleBall";
+            TeleBall.transform.position = transform.position + transform.forward * 0.6f + transform.up * 0.5f;
+            TeleBall.transform.rotation = transform.rotation;
+
+            var size = 1;   // Set size of TeleBallPfb progmatically
+            TeleBall.transform.localScale *= size;
+
+            TeleBall.GetComponent<Rigidbody>().mass = Mathf.Pow(size, 3);
+            TeleBall.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * force, ForceMode.Impulse);
+            TeleBall.GetComponent<MeshRenderer>().material.color =
+                new Color(Random.value, Random.value, Random.value, 1.0f);
+        }
+
+        private void Teleport()
+        {
+            m_CharacterController.enabled = false;
+            m_CharacterController.transform.position = new Vector3(TeleBall.transform.position.x, TeleBall.transform.position.y + 1.5f, TeleBall.transform.position.z);
+            m_CharacterController.enabled = true;
+
+            Destroy(TeleBall.gameObject);
+            hasBall = true;
+            Debug.Log("Teleport");
+        }
+        public void Teleport(Vector3 location)
+        {
+            if (ballSpawned)
+            {
+                m_CharacterController.enabled = false;
+                m_CharacterController.transform.position = location;
+                m_CharacterController.enabled = true;
+                Destroy(TeleBall.gameObject);
+                hasBall = true;
+            }
+        }
+
+
+        public void SpawnBall()
+        {
+            TeleBall = (GameObject)Instantiate(TeleBallPfb);    // Instantiate TeleBallPfb
+            TeleBall.name = "TeleBall";
+            TeleBall.GetComponent<Rigidbody>().useGravity = false;
+            TeleBall.transform.position = GameObject.FindGameObjectWithTag("BallHolder").transform.position;
+            TeleBall.GetComponent<MeshRenderer>().material.color =
+                new Color(Random.value, Random.value, Random.value, 1.0f);
+        }
+
+        public void ReturnBallGrav()
+        {
+            if (TeleBall != null)
+            {
+                TeleBall.GetComponent<Rigidbody>().useGravity = true;
+                Destroy(TeleBall.gameObject);
+                hasBall = true;
+                ballSpawned = true;
+            }
+        }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
@@ -265,6 +396,33 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+
         }
+
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.gameObject.name == "TeleBall")
+            {
+                Debug.Log(col.gameObject.name);
+                Destroy(col.gameObject);
+                hasBall = true;
+            }
+            else if (col.gameObject.name == "PlatformRotator")
+            {
+                m_CharacterController.transform.parent = col.gameObject.transform;
+            }
+            else if (col.gameObject.name != "PlatformRotator")
+            {
+                this.gameObject.transform.parent = null;
+            }
+        }
+
+        //private void OnTriggerExit(Collider col)
+        //{
+        //    if (col.gameObject.name == "Platform")
+        //    {
+        //        m_CharacterController.transform.parent = null;
+        //    }
+        //}
     }
 }
