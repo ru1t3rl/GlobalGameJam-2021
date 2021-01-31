@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,15 +17,28 @@ public class TimerUI : MonoBehaviour
         
 
     }
+    private void Awake()
+    {
+        timerScript.endGame = EndGame;
+    }
+
+    private void EndGame()
+    {
+        timerTxt.text = "Game Over!";
+    }
 
     private void SetTimerUI(float timeLeft)
     {
-        timerTxt.text = "Time Left: " + timeLeft.ToString();
+        if (!timerScript.timerUp)
+        {
+
+            timerTxt.text = timeLeft.ToString();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetTimerUI(timerScript.timeLeft);
+        SetTimerUI(timerScript.TimeLeft);
     }
 }
