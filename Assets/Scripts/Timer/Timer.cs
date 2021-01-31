@@ -47,7 +47,7 @@ public class Timer : MonoBehaviour
     private void Reset()
     {
         timerUp = false;
-        timeLeft = 5;
+        timeLeft = 300;
     }
 
     void TimeOver() {
