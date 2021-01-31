@@ -7630,6 +7630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1458738348}
   - component: {fileID: 1458738347}
+  - component: {fileID: 1458738349}
   m_Layer: 0
   m_Name: Gamemanager
   m_TagString: Untagged
@@ -7654,6 +7655,9 @@ MonoBehaviour:
   portalPositionOffset: 1.2
   defaultPosXValue: 999999
   artificats: {fileID: 1073986349}
+  explanaition: 
+  instructionText: {fileID: 0}
+  timeVisible: 0
 --- !u!4 &1458738348
 Transform:
   m_ObjectHideFlags: 0
@@ -7662,12 +7666,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458738346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.66705, y: 6.5573177, z: -11.3568535}
+  m_LocalPosition: {x: 0, y: 2, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1458738349
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458738346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7028694, y: 3.5299876, z: 1}
+  m_Center: {x: 0.028453112, y: -0.45404017, z: 0}
 --- !u!1001 &1503490170
 PrefabInstance:
   m_ObjectHideFlags: 0

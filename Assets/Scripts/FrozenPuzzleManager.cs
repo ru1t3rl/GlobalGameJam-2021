@@ -17,7 +17,7 @@ public class FrozenPuzzleManager : MonoBehaviour
 
     private void Awake()
     {
-        if(plInfo.availableRewards.Count > 0)
+        if(plInfo.availableRewards.Count > 0 && plInfo.availableRewards.Count != plInfo.rewards.Count)
         {
             reward = Instantiate(plInfo.availableRewards[Random.Range(0, plInfo.availableRewards.Count)]);
             reward.transform.GetChild(0).GetComponent<Reward>().SetPosition(portal);

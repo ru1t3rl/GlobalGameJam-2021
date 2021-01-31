@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,7 +14,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI artificats;
 
-    [SerializeField]
+    [SerializeField] string explanaition;
+    [SerializeField] TextMeshProUGUI instructionText;
+    [SerializeField] float timeVisible;
 
     void Awake()
     {
@@ -32,11 +35,28 @@ public class GameManager : MonoBehaviour
     {
         if(other.gameObject.layer == player.layer)
         {
-            if(playerInfo.availableRewards.Count <= 0)
+            if(playerInfo.availableRewards.Count <= 0 || playerInfo.availableRewards.Count >= playerInfo.rewards.Count)
             {
-                // Do something since the players has gathered all the rewards
+                StartCoroutine(ShowVictory());
             }
         }
+    }
+
+    IEnumerator ShowVictory()
+    {
+        instructionText.text = "Congratulations a found all the artificats and was able to escape!";
+        instructionText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(timeVisible);
+        instructionText.gameObject.SetActive(false);
+        SceneManager.LoadSceneAsync("Victory");
+    }
+
+    IEnumerator ShowInstructions()
+    {
+        instructionText.text = explanaition;
+        instructionText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(timeVisible);
+        instructionText.gameObject.SetActive(false);
     }
 
     public void SetPlayerEnterPortalPosition(Vector3 portalPos)
