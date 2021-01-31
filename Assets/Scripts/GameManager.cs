@@ -1,30 +1,26 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    Transform startPos;
-    GameObject player;
+    [Header("Player Stuff")]
+    [SerializeField] PlayerInfo playerInfo;
+    [SerializeField] GameObject player;
+    [SerializeField] float portalPositionOffset = 1.1f;
 
-    private void Awake()
+    void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    private void Reset()
-    {
-        player.transform.position = startPos.position;
-    }
-
-
-    private void Update()
-    {
-        //Debug.Log(player.transform.position.y + "Player Y POS");
-        if (player.transform.position.y < -5)
+        Debug.Log("Checking Player pos");
+        if(playerInfo.enterPortalPosition != null && playerInfo.enterPortalPosition.x != 999999)
         {
-            Reset();
+            player.transform.position = playerInfo.enterPortalPosition;
+            playerInfo.enterPortalPosition = new Vector3(999999, 0, 0);
         }
+    }
+
+    public void SetPlayerEnterPortalPosition(Vector3 portalPos)
+    {
+        playerInfo.enterPortalPosition = player.transform.position + (player.transform.position - portalPos).normalized * (Vector3.Dot(player.transform.position, portalPos) > 0 ? 1 : -1) * portalPositionOffset;
     }
 }
