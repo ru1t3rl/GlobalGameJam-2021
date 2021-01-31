@@ -3999,6 +3999,10 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 9182105928686482103, guid: fbd0612f5c62dc84ea480a13ebf5178f, type: 3}
+      propertyPath: sceneName
+      value: Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182105928686482103, guid: fbd0612f5c62dc84ea480a13ebf5178f, type: 3}
       propertyPath: onEnterPortalWithPos.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
