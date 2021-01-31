@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CanRotate : MonoBehaviour
 {
-    [SerializeField] private bool canRotate;
+    public bool canRotate { get; set; }
     [SerializeField] private bool switchRotate;
     [SerializeField] private float rotationSpeed =0.1f;
 

@@ -9,8 +9,11 @@ public class LightSwitch : MonoBehaviour
     [SerializeField] private Material shaderOff;
     [SerializeField] private Material shaderOn;
     [SerializeField] private GameObject platform;
-
     [SerializeField] private FirstPersonController fps;
+
+
+
+
 
     MeshRenderer rend;
 
@@ -52,4 +55,7 @@ public class LightSwitch : MonoBehaviour
         //    Debug.Log("J");
         //}
     }
+
+
+
 }

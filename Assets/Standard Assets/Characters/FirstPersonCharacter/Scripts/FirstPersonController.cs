@@ -57,14 +57,29 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float defaultForce = 4f;
         [SerializeField] private GameObject myPlayer;
         [SerializeField] private Collider col;
+        [SerializeField] private bool ballSpawned = false;
 
-       private void Awake()
-       {
+        // Use this for initialization
+        private void Awake()
+        {
+            m_CharacterController = GetComponent<CharacterController>();
+            m_Camera = Camera.main;
+            m_OriginalCameraPosition = m_Camera.transform.localPosition;
+            m_FovKick.Setup(m_Camera);
+            m_HeadBob.Setup(m_Camera, m_StepInterval);
+            m_StepCycle = 0f;
+            m_NextStep = m_StepCycle/2f;
+            m_Jumping = false;
+            m_AudioSource = GetComponent<AudioSource>();
+			m_MouseLook.Init(transform , m_Camera.transform);
+
+            m_CharacterController.detectCollisions = true;
+
             hasBall = false;
             Controls = new Default_Input_Actions();
             Controls.Player.Teleport.performed += ctx =>
             {
-                if (hasBall == false)
+                if (hasBall == false && ballSpawned)
                 {
                     Teleport();
                 }
@@ -90,25 +105,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
         void OnEnable() => Controls.Enable();
-
         void OnDisable() => Controls.Disable();
-        // Use this for initialization
-        private void Start()
-        {
-            m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
-            m_FovKick.Setup(m_Camera);
-            m_HeadBob.Setup(m_Camera, m_StepInterval);
-            m_StepCycle = 0f;
-            m_NextStep = m_StepCycle/2f;
-            m_Jumping = false;
-            m_AudioSource = GetComponent<AudioSource>();
-			m_MouseLook.Init(transform , m_Camera.transform);
-
-            m_CharacterController.detectCollisions = true;
-        }
-
 
         // Update is called once per frame
         private void Update()
@@ -328,11 +325,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
         public void Teleport(Vector3 location)
         {
-            m_CharacterController.enabled = false;
-            m_CharacterController.transform.position = location;
-            m_CharacterController.enabled = true;
-            Destroy(TeleBall.gameObject);
-            hasBall = true;
+            if (ballSpawned)
+            {
+                m_CharacterController.enabled = false;
+                m_CharacterController.transform.position = location;
+                m_CharacterController.enabled = true;
+                Destroy(TeleBall.gameObject);
+                hasBall = true;
+            }
         }
 
 
@@ -341,16 +341,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
             TeleBall = (GameObject)Instantiate(TeleBallPfb);    // Instantiate TeleBallPfb
             TeleBall.name = "TeleBall";
             TeleBall.GetComponent<Rigidbody>().useGravity = false;
-            TeleBall.transform.position = GameObject.FindGameObjectWithTag("BallHolder").transform.position/* + transform.up * 1f*/;
+            TeleBall.transform.position = GameObject.FindGameObjectWithTag("BallHolder").transform.position;
             TeleBall.GetComponent<MeshRenderer>().material.color =
                 new Color(Random.value, Random.value, Random.value, 1.0f);
         }
 
         public void ReturnBallGrav()
         {
-            TeleBall.GetComponent<Rigidbody>().useGravity = true;
-            Destroy(TeleBall.gameObject);
-            hasBall = true;
+            if (TeleBall != null)
+            {
+                TeleBall.GetComponent<Rigidbody>().useGravity = true;
+                Destroy(TeleBall.gameObject);
+                hasBall = true;
+                ballSpawned = true;
+            }
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
