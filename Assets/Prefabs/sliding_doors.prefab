@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: 4fc8c62212cd8d64da897cab6e83ec01, type: 3}
+  - {fileID: 2100000, guid: 897e4623b22662d47b4c1ca51fba1eeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,12 +206,16 @@ MonoBehaviour:
   onEnterPortal:
     m_PersistentCalls:
       m_Calls: []
+  onEnterPortalWithPos:
+    m_PersistentCalls:
+      m_Calls: []
   loadSceneMode: 0
   sceneName: Frozen Music Puzzle
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
   unloadAfterLoadAdditive: 0
+  loadDelay: 0
 --- !u!1 &6074921632101587349
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +512,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: 4fc8c62212cd8d64da897cab6e83ec01, type: 3}
+  - {fileID: 2100000, guid: 897e4623b22662d47b4c1ca51fba1eeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -1,10 +1,4 @@
-using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using Unity.QuickSearch.Providers;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
