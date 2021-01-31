@@ -174,7 +174,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.934846
+  - screenRelativeHeight: 0.6144388
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7706518765659264642}
@@ -189,7 +189,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &61210660
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.9139339
+  - screenRelativeHeight: 0.629358
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1994112707735635534}
@@ -527,7 +527,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &108374296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1239,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.65915626
+  - screenRelativeHeight: 0.5397392
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 483203315953296927}
@@ -1255,7 +1255,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1001 &277202561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4000,7 +4000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9182105928686482103, guid: fbd0612f5c62dc84ea480a13ebf5178f, type: 3}
       propertyPath: sceneName
-      value: Teleport
+      value: Frozen Music Puzzle
       objectReference: {fileID: 0}
     - target: {fileID: 9182105928686482103, guid: fbd0612f5c62dc84ea480a13ebf5178f, type: 3}
       propertyPath: onEnterPortalWithPos.m_PersistentCalls.m_Calls.Array.size
@@ -4494,7 +4494,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.9139339
+  - screenRelativeHeight: 0.65360034
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 704120802373192316}
@@ -4511,7 +4511,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &857120272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4715,7 +4715,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.98815995
+  - screenRelativeHeight: 0.6144388
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3329217380670581267}
@@ -4732,7 +4732,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1001 &889425888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5090,6 +5090,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2476780895941509694, guid: 309ccaedf5db7fe46a9a94002ea41c07, type: 3}
   m_PrefabInstance: {fileID: 917835042}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &937526857
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2062533697364033043, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_Name
+      value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799061524588106393, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e39d406e8a0bd4942a8eaba0ce212c84, type: 3}
 --- !u!1001 &940274831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6044,7 +6101,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.94011086
+  - screenRelativeHeight: 0.7783318
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3108290264138741499}
@@ -6058,7 +6115,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1001 &1115594775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7713,7 +7770,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.9191397
+  - screenRelativeHeight: 0.6144388
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 8747089368160416021}
@@ -7729,7 +7786,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1001 &1444938876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10536,7 +10593,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.94011086
+  - screenRelativeHeight: 0.6353757
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7921102974174200904}
@@ -10551,7 +10608,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &2004273170
 GameObject:
   m_ObjectHideFlags: 0
@@ -10842,7 +10899,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.8728186
+  - screenRelativeHeight: 0.6908214
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7991955072397393250}
@@ -10857,7 +10914,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &2075917039
 GameObject:
   m_ObjectHideFlags: 0
@@ -11228,7 +11285,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.94011086
+  - screenRelativeHeight: 0.6908214
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4136679316676746477}
@@ -11240,7 +11297,7 @@ LODGroup:
   - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &29987255882265537
 GameObject:
   m_ObjectHideFlags: 0

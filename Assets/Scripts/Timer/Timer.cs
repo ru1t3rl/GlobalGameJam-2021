@@ -27,7 +27,7 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(transform.parent.gameObject);
     }
 
     #endregion

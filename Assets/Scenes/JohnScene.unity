@@ -7672,7 +7672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 748828450537426496, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
       propertyPath: rayDistance
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 748828450537426496, guid: 544e967a997505347a2743204dbe5aa9, type: 3}
       propertyPath: layersToCheck.m_Bits

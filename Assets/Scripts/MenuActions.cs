@@ -8,6 +8,11 @@ public class MenuActions : MonoBehaviour
     [SerializeField] AudioSource fx;
     [SerializeField] PlayerInfo defaultInfo, backupInfo;
 
+    private void Awake()
+    {
+        Cursor.visible = true;
+    }
+
     public void Exit()
     {
         fx.Play();
