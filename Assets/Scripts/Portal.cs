@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.QuickSearch.Providers;
@@ -9,18 +10,19 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] UnityEvent onEnterPortal, onGetCloseToPortal;
-
+    [SerializeField] UnityEvent onEnterPortal;
+    [SerializeField] LoadSceneMode loadSceneMode = LoadSceneMode.Single;
     [SerializeField] string sceneName;
     Scene scene;
     [SerializeField] float loadSceneDistance;
     [SerializeField] LayerMask playerLayer;
+    [SerializeField] bool unloadAfterLoadAdditive = false;
     bool loaded, entered = false;
 
     public void LoadScene()
     {
         if (!scene.isLoaded && entered)
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
     }
 
     public void UnloadScene()
@@ -34,7 +36,15 @@ public class Portal : MonoBehaviour
         if(other.gameObject.layer == playerLayer.ToInteger())
         {
             onEnterPortal?.Invoke();
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+            
+            if(loadSceneMode == LoadSceneMode.Additive && unloadAfterLoadAdditive)
+            {
+                SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
+            }
+
+            SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
+            
+                  
         }
     }
 }
