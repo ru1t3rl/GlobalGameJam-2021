@@ -206,13 +206,12 @@ MonoBehaviour:
   onEnterPortal:
     m_PersistentCalls:
       m_Calls: []
-  loadSceneMode: 1
+  loadSceneMode: 0
   sceneName: Frozen Music Puzzle
-  loadSceneDistance: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  unloadAfterLoadAdditive: 1
+  unloadAfterLoadAdditive: 0
 --- !u!1 &6074921632101587349
 GameObject:
   m_ObjectHideFlags: 0
