@@ -19,6 +19,7 @@ public class Reward : MonoBehaviour
     [SerializeField] private float amplitude = 1f;
     [SerializeField] private float frequentie = 0.1f;
     [SerializeField] private float distanceFromPortal = 1f;
+    [SerializeField] private float rotationSpeed = 1f;
 
     public bool fixX = false;
     public bool fixY = false;
@@ -76,6 +77,7 @@ public class Reward : MonoBehaviour
             localPosition.z = (amplitude * Mathf.Sin(angle) + center.z);
         }
 
+        transform.Rotate(Vector3.up, rotationSpeed);
         transform.localPosition = localPosition;
     }
 }
