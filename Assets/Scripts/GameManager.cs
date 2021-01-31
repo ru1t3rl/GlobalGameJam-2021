@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] float portalPositionOffset = 1.1f;
     [SerializeField] float defaultPosXValue = 999999;
 
+    [SerializeField] TextMeshProUGUI artificats;
+
     [SerializeField]
 
     void Awake()
@@ -19,6 +22,8 @@ public class GameManager : MonoBehaviour
             player.transform.position = playerInfo.enterPortalPosition;
             playerInfo.enterPortalPosition = new Vector3(defaultPosXValue, 0, 0);
         }
+
+        artificats.text = $"{playerInfo.rewards.Count}/{playerInfo.availableRewards.Count}";
 
         DontDestroyOnLoad(gameObject);
     }
