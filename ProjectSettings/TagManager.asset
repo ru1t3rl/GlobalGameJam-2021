@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Laser
   - Lamp
+  - Button
   layers:
   - Default
   - TransparentFX

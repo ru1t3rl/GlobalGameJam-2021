@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float timeLeft;
+    public Action endGame;
+    public bool timerUp;
+    float timeLeft;
+    public float TimeLeft {
+        get { return timeLeft; }
+    }
     #region Instance
 
     private static Timer _instance;
@@ -29,17 +34,38 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        Reset();    
+        Reset();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeLeft -= Time.deltaTime;
+        
+        TimeOver();
     }
 
     private void Reset()
     {
+        timerUp = false;
+        timeLeft = 5;
+    }
+
+    void TimeOver() {
         
+        if (timeLeft < 0)
+        {
+            timeLeft = 0;
+            EndGame();
+        }
+        else
+        {
+            timeLeft -= Time.deltaTime;
+        }
+    }
+
+    private void EndGame()
+    {
+        timerUp = true;
+        endGame?.Invoke();
     }
 }
