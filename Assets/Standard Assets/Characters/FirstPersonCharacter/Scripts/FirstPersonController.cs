@@ -50,16 +50,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Default_Input_Actions Controls;
 
         [Header("Shoot")]
-        [SerializeField] private bool hasBall = true;
+        [SerializeField] private bool hasBall = false;
         [SerializeField] private GameObject TeleBallPfb;
         private GameObject TeleBall;
-        [SerializeField] private float forceBuildup = 5f;
-        [SerializeField] private float defaultForce = 2f;
+        [SerializeField] private float forceBuildup = 6f;
+        [SerializeField] private float defaultForce = 4f;
         [SerializeField] private GameObject myPlayer;
-        [SerializeField] private CharacterController characterController;
+        [SerializeField] private Collider col;
 
-        private void Awake()
-        {
+       private void Awake()
+       {
+            hasBall = false;
             Controls = new Default_Input_Actions();
             Controls.Player.Teleport.performed += ctx =>
             {
@@ -303,25 +304,53 @@ namespace UnityStandardAssets.Characters.FirstPerson
             var transform = this.transform;     // get player position
             TeleBall = (GameObject)Instantiate(TeleBallPfb);    // Instantiate TeleBallPfb
             TeleBall.name = "TeleBall";
-            TeleBall.transform.position = transform.position + transform.forward * 0.6f;   // TBD Add force
+            TeleBall.transform.position = transform.position + transform.forward * 0.6f + transform.up * 0.5f;
             TeleBall.transform.rotation = transform.rotation;
 
             var size = 1;   // Set size of TeleBallPfb progmatically
             TeleBall.transform.localScale *= size;
 
             TeleBall.GetComponent<Rigidbody>().mass = Mathf.Pow(size, 3);
-            TeleBall.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
+            TeleBall.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * force, ForceMode.Impulse);
             TeleBall.GetComponent<MeshRenderer>().material.color =
                 new Color(Random.value, Random.value, Random.value, 1.0f);
         }
 
         private void Teleport()
         {
-            characterController.enabled = false;
-            characterController.transform.position = new Vector3(TeleBall.transform.position.x, TeleBall.transform.position.y + 1.5f, TeleBall.transform.position.z);
-            characterController.enabled = true;
+            m_CharacterController.enabled = false;
+            m_CharacterController.transform.position = new Vector3(TeleBall.transform.position.x, TeleBall.transform.position.y + 1.5f, TeleBall.transform.position.z);
+            m_CharacterController.enabled = true;
 
+            Destroy(TeleBall.gameObject);
+            hasBall = true;
             Debug.Log("Teleport");
+        }
+        public void Teleport(Vector3 location)
+        {
+            m_CharacterController.enabled = false;
+            m_CharacterController.transform.position = location;
+            m_CharacterController.enabled = true;
+            Destroy(TeleBall.gameObject);
+            hasBall = true;
+        }
+
+
+        public void SpawnBall()
+        {
+            TeleBall = (GameObject)Instantiate(TeleBallPfb);    // Instantiate TeleBallPfb
+            TeleBall.name = "TeleBall";
+            TeleBall.GetComponent<Rigidbody>().useGravity = false;
+            TeleBall.transform.position = GameObject.FindGameObjectWithTag("BallHolder").transform.position/* + transform.up * 1f*/;
+            TeleBall.GetComponent<MeshRenderer>().material.color =
+                new Color(Random.value, Random.value, Random.value, 1.0f);
+        }
+
+        public void ReturnBallGrav()
+        {
+            TeleBall.GetComponent<Rigidbody>().useGravity = true;
+            Destroy(TeleBall.gameObject);
+            hasBall = true;
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -339,12 +368,32 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
 
-            if (hit.gameObject.name == "TeleBall")
+        }
+
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.gameObject.name == "TeleBall")
             {
-                Debug.Log(hit.gameObject.name);
-                Destroy(hit.gameObject);
+                Debug.Log(col.gameObject.name);
+                Destroy(col.gameObject);
                 hasBall = true;
             }
+            else if (col.gameObject.name == "PlatformRotator")
+            {
+                m_CharacterController.transform.parent = col.gameObject.transform;
+            }
+            else if (col.gameObject.name != "PlatformRotator")
+            {
+                this.gameObject.transform.parent = null;
+            }
         }
+
+        //private void OnTriggerExit(Collider col)
+        //{
+        //    if (col.gameObject.name == "Platform")
+        //    {
+        //        m_CharacterController.transform.parent = null;
+        //    }
+        //}
     }
 }
