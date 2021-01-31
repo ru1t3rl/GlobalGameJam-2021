@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VictoryLampScript: MonoBehaviour
+public class ResultLightScript : MonoBehaviour
 {
     [SerializeField]
     bool CanDebug = false;
 
     [SerializeField]
-    List<Material> LightColours;
+    List<Material> ResultColours;
 
     [SerializeField]
-    AudioSource VictorySound;
-    
+    List<GameObject> ResultLamps;
+
     MeshRenderer renderer;
     MaterialPropertyBlock mpb;
     public MaterialPropertyBlock Mpb => mpb;
-
-    public System.Action<Color> onChangeColor;
 
     // Start is called before the first frame update
     void Start()
@@ -26,29 +24,23 @@ public class VictoryLampScript: MonoBehaviour
 
         mpb = new MaterialPropertyBlock();
         renderer.GetPropertyBlock(mpb);
-
-        //mpb.SetColor("_EmissionColor", Color.cyan);
-                     
-        if (CanDebug) Debug.Log(LightColours);
-
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         
     }
-
-    public void TurnOn()
+    public void ResultCorrect()
     {
-        mpb.SetColor("_EmissionColor", LightColours[1].GetColor("_EmissionColor") * 1.5f);
+        mpb.SetColor("_EmissionColor", ResultColours[1].GetColor("_EmissionColor") * 1.5f);
         renderer.SetPropertyBlock(mpb);
 
-        VictorySound.Play();
     }
 
-    public void TurnOff()
+    public void ResultIncorrect()
     {
-        mpb.SetColor("_EmissionColor", LightColours[0].GetColor("_EmissionColor") * 1.5f);
+        mpb.SetColor("_EmissionColor", ResultColours[0].GetColor("_EmissionColor") * 1.5f);
         renderer.SetPropertyBlock(mpb);
     }
 }

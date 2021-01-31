@@ -26,17 +26,14 @@ public class LaserScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Shoot()
     {
-        if (Input.GetMouseButton(0))
+        if (CanDebug) Debug.Log("mouse pressed");
+        if (Time.time > m_shootRateTimeStamp)
         {
-            if (CanDebug) Debug.Log("mouse pressed");
-            if (Time.time > m_shootRateTimeStamp)
-            {
-                shootSound.Play();
-                shootRay();       
-                m_shootRateTimeStamp = Time.time + shootRate;
-            }
+            shootSound.Play();
+            shootRay();       
+            m_shootRateTimeStamp = Time.time + shootRate;
         }
     }
 
