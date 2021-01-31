@@ -24,18 +24,22 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = playerInfo.enterPortalPosition;
             playerInfo.enterPortalPosition = new Vector3(defaultPosXValue, 0, 0);
+            StartCoroutine(ShowInstructions());
         }
 
         artificats.text = $"{playerInfo.rewards.Count}/{playerInfo.availableRewards.Count}";
 
         DontDestroyOnLoad(gameObject);
+
+        instructionText.gameObject.SetActive(false);
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == player.layer)
         {
-            if(playerInfo.availableRewards.Count <= 0 || playerInfo.availableRewards.Count >= playerInfo.rewards.Count)
+            if(playerInfo.availableRewards.Count <= 0 || playerInfo.availableRewards.Count <= playerInfo.rewards.Count)
             {
                 StartCoroutine(ShowVictory());
             }
@@ -47,8 +51,16 @@ public class GameManager : MonoBehaviour
         instructionText.text = "Congratulations a found all the artificats and was able to escape!";
         instructionText.gameObject.SetActive(true);
         yield return new WaitForSeconds(timeVisible);
-        instructionText.gameObject.SetActive(false);
-        SceneManager.LoadSceneAsync("Victory");
+
+        try
+        {
+            instructionText.gameObject.SetActive(false);
+            SceneManager.LoadSceneAsync("Victory");
+        }
+        catch (MissingReferenceException)
+        {
+
+        }
     }
 
     IEnumerator ShowInstructions()
@@ -56,7 +68,14 @@ public class GameManager : MonoBehaviour
         instructionText.text = explanaition;
         instructionText.gameObject.SetActive(true);
         yield return new WaitForSeconds(timeVisible);
-        instructionText.gameObject.SetActive(false);
+
+        try
+        {
+            instructionText.gameObject.SetActive(false);
+        } catch( MissingReferenceException)
+        {
+
+        }
     }
 
     public void SetPlayerEnterPortalPosition(Vector3 portalPos)
