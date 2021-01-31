@@ -8,14 +8,29 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerInfo playerInfo;
     [SerializeField] GameObject player;
     [SerializeField] float portalPositionOffset = 1.1f;
+    [SerializeField] float defaultPosXValue = 999999;
+
+    [SerializeField]
 
     void Awake()
     {
-        Debug.Log("Checking Player pos");
-        if(playerInfo.enterPortalPosition != null && playerInfo.enterPortalPosition.x != 999999)
+        if(playerInfo.enterPortalPosition != null && playerInfo.enterPortalPosition.x != defaultPosXValue)
         {
             player.transform.position = playerInfo.enterPortalPosition;
-            playerInfo.enterPortalPosition = new Vector3(999999, 0, 0);
+            playerInfo.enterPortalPosition = new Vector3(defaultPosXValue, 0, 0);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == player.layer)
+        {
+            if(playerInfo.availableRewards.Count <= 0)
+            {
+                // Do something since the players has gathered all the rewards
+            }
         }
     }
 

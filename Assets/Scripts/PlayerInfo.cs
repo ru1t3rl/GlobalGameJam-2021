@@ -7,4 +7,5 @@ public class PlayerInfo : ScriptableObject
 {
     public Vector3 enterPortalPosition;
     public List<Reward> rewards;
+    public List<GameObject> availableRewards;
 }
