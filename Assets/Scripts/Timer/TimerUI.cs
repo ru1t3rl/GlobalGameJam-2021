@@ -31,8 +31,8 @@ public class TimerUI : MonoBehaviour
     {
         if (!timerScript.timerUp)
         {
-
-            timerTxt.text = timeLeft.ToString();
+            int stringTimeLeft = (int)timeLeft;
+            timerTxt.text = stringTimeLeft.ToString();
         }
     }
 
