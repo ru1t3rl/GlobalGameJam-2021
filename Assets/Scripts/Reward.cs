@@ -9,6 +9,8 @@ public class Reward : MonoBehaviour
     [SerializeField] PlayerInfo playerInfo;
 
 
+    [SerializeField] AudioSource source;
+
     [SerializeField] RewardTypes type;
     Reward availableReference;
 
@@ -16,7 +18,7 @@ public class Reward : MonoBehaviour
 
     [SerializeField] private float amplitude = 1f;
     [SerializeField] private float frequentie = 0.1f;
-
+    [SerializeField] private float distanceFromPortal = 1f;
 
     public bool fixX = false;
     public bool fixY = false;
@@ -30,9 +32,10 @@ public class Reward : MonoBehaviour
     {
         for (int iReward = 0; iReward < playerInfo.availableRewards.Count; iReward++)
         {
-            if (playerInfo.availableRewards[iReward].GetComponent<Reward>().type == type)
+            if (playerInfo.availableRewards[iReward].transform.GetChild(0).GetComponent<Reward>().type == type)
             {
-                availableReference = playerInfo.availableRewards[iReward].GetComponent<Reward>();
+                availableReference = playerInfo.availableRewards[iReward].transform.GetChild(0).GetComponent<Reward>();
+                break;
             }
         }
 
@@ -40,8 +43,16 @@ public class Reward : MonoBehaviour
             gameObject.SetActive(false);
     }
 
+    public void SetPosition(GameObject portal)
+    {
+        transform.parent.position = portal.transform.position + portal.transform.forward * distanceFromPortal;
+        transform.parent.position = new Vector3(transform.position.x, 1.45f, transform.position.z);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        source.Play();
+
         playerInfo.rewards.Add(availableReference);
         playerInfo.availableRewards.Remove(availableReference.gameObject);
 

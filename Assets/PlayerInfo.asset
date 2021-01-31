@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b334649b001d0e34e99caf180ae953b6, type: 3}
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
-  enterPortalPosition: {x: 999999, y: 0, z: 0}
-  rewards:
-  - {fileID: 7285835539321144616, guid: f34e8841997625d4496c88ba1726e93c, type: 3}
-  availableRewards: []
+  enterPortalPosition: {x: 4.5132008, y: 0.53061354, z: 7.5972147}
+  rewards: []
+  availableRewards:
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
+  - {fileID: 3372590702991975237, guid: ca4726e50c77e3949bc9cd5563129f35, type: 3}
