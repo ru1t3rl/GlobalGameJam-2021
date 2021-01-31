@@ -6,7 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Maze Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Frozen Music Puzzle.unity
+    guid: 1a12a0ed4d5765149bb26a8b25d8ca38
+  - enabled: 1
+    path: Assets/Scenes/JohnScene.unity
+    guid: 2b40c58f312b022429977885670d58cc
+  - enabled: 1
+    path: Assets/Scenes/LaunchPadScene.unity
+    guid: 78087f55a3fa3204bb3d54945e511b95
+  - enabled: 1
+    path: Assets/Scenes/LightBulbRoom.unity
+    guid: e4d08ef830dc795428c9ad418af97e6d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 56679dd6cb5d0c449951202b95a3d1f6, type: 2}
