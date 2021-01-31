@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5375720559547718498}
   - component: {fileID: 3028932995805800308}
   - component: {fileID: 3732580994539791534}
+  - component: {fileID: 2978653795926033330}
   m_Layer: 0
   m_Name: pCube1
   m_TagString: Untagged
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2978653795926033330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286888014471612572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 60, y: 500, z: 60}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1495377159871074462
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +138,8 @@ GameObject:
   - component: {fileID: 1168785928853147558}
   - component: {fileID: 200908648019227126}
   - component: {fileID: 2990267685362189002}
+  - component: {fileID: 3037395661627506156}
+  - component: {fileID: 6054347254034966653}
   m_Layer: 0
   m_Name: pCylinder1
   m_TagString: Button
@@ -194,3 +210,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3037395661627506156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203632572907471276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fdb16559418bfc418415fe4743e2c3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pi: {fileID: 0}
+  reward: {fileID: 0}
+  portal: {fileID: 0}
+  rayDistance: 5
+--- !u!65 &6054347254034966653
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203632572907471276}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 41.84372, y: 41.843727, z: 17.525768}
+  m_Center: {x: 0, y: 0.0000038146973, z: 0}
