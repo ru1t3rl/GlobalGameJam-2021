@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] UnityEvent onEnterPortal, onGetCloseToPortal;
-
+    [SerializeField] UnityEvent onEnterPortal;
+    [SerializeField] LoadSceneMode loadSceneMode = LoadSceneMode.Single;
     [SerializeField] string sceneName;
     Scene scene;
     [SerializeField] float loadSceneDistance;
@@ -20,7 +20,7 @@ public class Portal : MonoBehaviour
     public void LoadScene()
     {
         if (!scene.isLoaded && entered)
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
     }
 
     public void UnloadScene()
@@ -34,7 +34,7 @@ public class Portal : MonoBehaviour
         if(other.gameObject.layer == playerLayer.ToInteger())
         {
             onEnterPortal?.Invoke();
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+            SceneManager.LoadSceneAsync(sceneName, loadSceneMode);
         }
     }
 }

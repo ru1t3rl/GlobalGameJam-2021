@@ -206,9 +206,7 @@ MonoBehaviour:
   onEnterPortal:
     m_PersistentCalls:
       m_Calls: []
-  onGetCloseToPortal:
-    m_PersistentCalls:
-      m_Calls: []
+  loadSceneMode: 0
   sceneName: Frozen Music Puzzle
   loadSceneDistance: 0
   playerLayer:
