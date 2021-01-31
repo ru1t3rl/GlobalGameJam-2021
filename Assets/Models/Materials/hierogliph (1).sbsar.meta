@@ -238,7 +238,7 @@ ScriptedImporter:
     - textureName: New_Graph - emissive
       wrapMode: 0
       filterMode: 1
-      aniso: 1
+      aniso: 7
     colorSpaceList: []
     inputTextureMap: []
     targetSettingList:
