@@ -20,12 +20,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if(playerInfo.enterPortalPosition != null && playerInfo.enterPortalPosition.x != defaultPosXValue)
+        if (playerInfo.enterPortalPosition != null && playerInfo.enterPortalPosition.x != defaultPosXValue)
         {
             player.transform.position = playerInfo.enterPortalPosition;
             playerInfo.enterPortalPosition = new Vector3(defaultPosXValue, 0, 0);
             StartCoroutine(ShowInstructions());
         }
+        else
+            playerInfo.LoadedTimer = false;
 
         artificats.text = $"{playerInfo.rewards.Count}/{playerInfo.availableRewards.Count}";
 

@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField] PlayerInfo plInfo;
     public Action endGame;
     public bool timerUp;
     float timeLeft;
+    bool loaded;
+
     public float TimeLeft {
         get { return timeLeft; }
     }
@@ -27,7 +30,14 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(transform.parent.gameObject);
+        if (!plInfo.LoadedTimer && !loaded)
+        {
+            DontDestroyOnLoad(transform.parent.gameObject);
+            loaded = true;
+            plInfo.LoadedTimer = true;
+        }
+        else
+            Destroy(transform.parent.gameObject);
     }
 
     #endregion

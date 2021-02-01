@@ -22,6 +22,7 @@ public class MenuActions : MonoBehaviour
     public void Play()
     {
         fx.Play();
+        defaultInfo.LoadedTimer = false;
         SceneManager.LoadSceneAsync("Maze Scene");
     }
 
@@ -32,6 +33,7 @@ public class MenuActions : MonoBehaviour
         defaultInfo.availableRewards = backupInfo.availableRewards;
         defaultInfo.rewards = backupInfo.rewards;
         defaultInfo.enterPortalPosition = backupInfo.enterPortalPosition;
+        defaultInfo.LoadedTimer = false;
 
         SceneManager.LoadSceneAsync("Maze Scene");
     }
